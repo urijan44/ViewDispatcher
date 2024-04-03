@@ -33,9 +33,8 @@ public struct StateSignal<State: ViewState> {
     
     let keyPathSet = (Mirror(reflecting: state).children).reduce(into: [String: Any]()) { partialResult, child in
       guard let label = child.label else { return }
-      partialResult["\\State.\(label)"] = child.value
+      partialResult["\\StateImpl.\(label)"] = child.value
     }
-    
     self.signalPublisher = CurrentValueSubject(keyPathSet)
   }
 }
